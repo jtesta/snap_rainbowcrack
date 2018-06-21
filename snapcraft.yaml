@@ -1,0 +1,51 @@
+name: rainbowcrack
+version: '1.7-0'
+summary:  The rainbow table cracking tools from RainbowCrack.
+description: |
+  RainbowCrack is a general propose implementation of Philippe Oechslin's faster time-memory trade-off technique. It crack hashes with rainbow tables. http://project-rainbowcrack.com/
+
+grade: devel # Change to 'stable' later.
+confinement: strict
+
+apps:
+  rcrack:
+    command: set-path.sh rcrack
+
+  rt2rtc:
+    command: set-path.sh rt2rtc
+
+  rtc2rt:
+    command: set-path.sh rtc2rt
+
+  rtgen:
+    command: set-path.sh rtgen
+
+  rtmerge:
+    command: set-path.sh rtmerge
+
+  rtsort:
+    command: set-path.sh rtsort
+
+parts:
+  rainbowcrack:
+    source: rainbowcrack-1.7-linux64
+    plugin: dump
+    override-stage: |
+            snapcraftctl stage
+            chmod 0755 r*
+            chmod 0644 *.so *.txt
+    prime:
+      - rt*
+      - rcrack
+      - alglib*.so
+      - charset.txt
+
+  set-path:
+    source: set-path
+    plugin: dump
+    override-stage: |
+            snapcraftctl stage
+            chmod 0755 set-path.sh
+    prime:
+      - set-path.sh
+
