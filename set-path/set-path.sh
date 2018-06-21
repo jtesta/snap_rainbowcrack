@@ -11,7 +11,7 @@ if [ ! -f $SNAP_USER_COMMON/charset.txt ]; then
 fi
 
 pushd $SNAP_USER_COMMON > /dev/null
-echo "Setting working directory to: $PWD..."
+echo -e "Setting working directory to: $PWD...\n"
 CMD=$SNAP/$1
 shift # Remove the first element in the $@ array, since that has the $1 arg.
 exec $CMD "$@"
