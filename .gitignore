@@ -1,6 +1,7 @@
 *.tar.bz2
 *~
 *.snap
+*.zip
 rainbowcrack-*-linux64
 parts/
 prime/
